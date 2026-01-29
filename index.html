@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Game Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+  body {
+    font-family: monospace;
+    background: #0f0f1f;
+    color: #e0f8cf;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+  }
+  h1 { margin-bottom: 10px; }
+  button {
+    margin: 5px;
+    padding: 10px 20px;
+    font-family: monospace;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .game-list, .installed-list { margin-top: 20px; }
+  .game { margin: 5px 0; }
+  .progress-bar {
+    width: 200px;
+    height: 20px;
+    background: #333;
+    margin: 5px auto;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  .progress {
+    height: 100%;
+    width: 0;
+    background: #0f9;
+    transition: width 0.2s;
+  }
+</style>
+</head>
+<body>
+
+<h1>GAME HUB</h1>
+<div>
+  <button onclick="showStore()">Loja de Jogos</button>
+  <button onclick="showInstalled()">Jogos Instalados</button>
+</div>
+
+<div id="content"></div>
+
+<script>
+const games = [
+  // 🥊 LUTA / AÇÃO
+  {name: "Steel Fighter", installed: false},
+  {name: "Iron City Brawl", installed: false},
+  {name: "Fist Zone", installed: false},
+  {name: "Shadow Punch", installed: false},
+  {name: "Blade Clash", installed: false},
+  {name: "Street Chaos", installed: false},
+  {name: "Final Grip", installed: false},
+  // 🧠 ESTRATÉGIA / SISTEMA
+  {name: "Overload", installed: false},
+  {name: "Power Limit", installed: false},
+  {name: "System Break", installed: false},
+  {name: "Control Unit", installed: false},
+  {name: "Risk Level", installed: false},
+  {name: "Lockdown", installed: false},
+  // 🌙 MISSÃO / TÁTICO
+  {name: "Night Ops", installed: false},
+  {name: "Silent Run", installed: false},
+  {name: "Dark Route", installed: false},
+  {name: "Black Signal", installed: false},
+  {name: "Deep Cover", installed: false},
+  // 💥 EXPERIMENTAIS / ESTRANHOS
+  {name: "Glitch Mode", installed: false},
+  {name: "Error_404", installed: false},
+  {name: "Broken Screen", installed: false},
+  {name: "Pixel Noise", installed: false},
+  {name: "Unknown.exe", installed: false},
+  {name: "Corrupt Data", installed: false},
+  // ⚡ ARCADE SIMPLES
+  {name: "Jump Block", installed: false},
+  {name: "Dash Cube", installed: false},
+  {name: "Fall Line", installed: false},
+  {name: "Hit Square", installed: false},
+  {name: "Fast Loop", installed: false},
+  // 🧩 PUZZLE DIFERENTE
+  {name: "Switch It", installed: false},
+  {name: "Red / Blue", installed: false},
+  {name: "One Move", installed: false},
+  {name: "Last Button", installed: false},
+  {name: "Pattern Lost", installed: false},
+  // 👾 SURPRESA / SECRETOS
+  {name: "???", installed: false},
+  {name: "Hidden Game", installed: false},
+  {name: "Dev Test", installed: false},
+  {name: "Prototype X", installed: false},
+  {name: "Debug Mode", installed: false},
+  // 🔒 BLOQUEADOS
+  {name: "Steel Fighter EX", installed: false},
+  {name: "Night Ops Hard", installed: false},
+  {name: "Overload Extreme", installed: false},
+  {name: "Glitch Mode+", installed: false},
+  {name: "Iron City Boss", installed: false},
+  // 🎁 EXTRAS
+  {name: "Demo 01", installed: false},
+  {name: "Demo 02", installed: false},
+  {name: "Classic Game", installed: false},
+  {name: "Retro Mode", installed: false},
+  {name: "AIR Test", installed: false},
+  {name: "GAME.SOFT Intro", installed: false},
+];
+
+function showStore() {
+  const content = document.getElementById('content');
+  content.innerHTML = "<h2>Loja de Jogos</h2>";
+  const list = document.createElement('div');
+  list.className = "game-list";
+  games.forEach((game, idx) => {
+    const div = document.createElement('div');
+    div.className = "game";
+    div.innerHTML = `${game.name} ${game.installed ? "(Instalado)" : `<button onclick="downloadGame(${idx})">BAIXAR</button>`}`;
+    list.appendChild(div);
+  });
+  content.appendChild(list);
+}
+
+function showInstalled() {
+  const content = document.getElementById('content');
+  content.innerHTML = "<h2>Jogos Instalados</h2>";
+  const list = document.createElement('div');
+  list.className = "installed-list";
+  games.filter(g => g.installed).forEach(g => {
+    const div = document.createElement('div');
+    div.className = "game";
+    div.innerText = g.name;
+    list.appendChild(div);
+  });
+  if (list.childElementCount === 0) list.innerText = "Nenhum jogo instalado ainda!";
+  content.appendChild(list);
+}
+
+function downloadGame(idx) {
+  const content = document.getElementById('content');
+  const game = games[idx];
+  content.innerHTML = `<h2>Baixando: ${game.name}</h2>
+    <div class="progress-bar"><div class="progress" id="bar"></div></div>
+    <p id="percent">0%</p>`;
+  let progress = 0;
+  const interval = setInterval(() => {
+    progress += Math.floor(Math.random() * 10) + 5; // progresso aleatório
+    if (progress > 100) progress = 100;
+    document.getElementById('bar').style.width = progress + "%";
+    document.getElementById('percent').innerText = progress + "%";
+    if (progress >= 100) {
+      clearInterval(interval);
+      game.installed = true;
+      content.innerHTML = `<h2>${game.name} instalado!</h2><button onclick="showStore()">Voltar à loja</button>`;
+    }
+  }, 300);
+}
+
+// Inicial
+showStore();
+</script>
+
+</body>
+</html>
