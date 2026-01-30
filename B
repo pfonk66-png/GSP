@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>GSP - B (Jogos)</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #000;
+      color: #0ff;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>JOGOS INSTALADOS</h1>
+
+<ul>
+  <li>Steel Fighter</li>
+  <li>Night Ops</li>
+</ul>
+
+<br>
+<button onclick="location.href='index.html'">VOLTAR</button>
+
+</body>
+</html>
