@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>GSP - C (Extras)</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #000;
+      color: #ff0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+<h1>EXTRAS</h1>
+
+<p>Créditos</p>
+<p>Versão do Sistema</p>
+<p>Modo Debug</p>
+
+<br>
+<button onclick="location.href='index.html'">VOLTAR</button>
+
+</body>
+</html>
