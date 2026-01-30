@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>GSP - A (Loja)</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #000;
+      color: #0f0;
+      text-align: center;
+    }
+    .game {
+      margin: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>LOJA DE JOGOS</h1>
+
+<div class="game">Steel Fighter <button>BAIXAR</button></div>
+<div class="game">Night Ops <button>BAIXAR</button></div>
+<div class="game">Overload <button>BAIXAR</button></div>
+
+<br>
+<button onclick="location.href='index.html'">VOLTAR</button>
+
+</body>
+</html>
